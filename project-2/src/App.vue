@@ -46,7 +46,7 @@
   </div>
   <div class="container">
     <p>
-      <button class="btn primary" @click="loadComments">Загрузить комментарии</button>
+      <button class="btn primary" @click="loadComments" :disabled="commentArray.length">Загрузить комментарии</button>
     </p>
     <app-loader v-if="isLoading"></app-loader>
     <div class="card" v-if="commentArray.length">
