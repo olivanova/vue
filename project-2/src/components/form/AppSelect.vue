@@ -3,7 +3,7 @@
     <label :for="id">{{ label }}</label>
     <select :id="id" @change="change" v-model="modelValue">
       <option
-          v-for="(val, key) in fieldType.options"
+          v-for="(val, key) in options"
           :value="key"
           ref="input"
           :key="key"
@@ -15,7 +15,6 @@
 
 <script>
 export default {
-  inject: ['fieldType', 'fieldText'],
   data(){
     return {
       id: `type-${Math.random()}`
