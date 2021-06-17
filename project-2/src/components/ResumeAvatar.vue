@@ -1,22 +1,11 @@
 <template>
   <div class="component-wrapper">
     <div class="avatar">
-      <img :src="avatar">
+      <img :src="$attrs.value">
     </div>
     <slot/>
   </div>
 </template>
-
-<script>
-export default {
-  props: {
-    avatar: {
-      type: String,
-      required: true,
-    }
-  }
-}
-</script>
 
 <style scoped>
   .avatar {
