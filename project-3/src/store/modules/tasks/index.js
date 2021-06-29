@@ -8,7 +8,6 @@ export default {
       tasksList: [],
       isActive: 0,
       isFetching: false,
-      filter: null
     }
   },
   getters,

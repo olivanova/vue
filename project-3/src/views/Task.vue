@@ -22,7 +22,7 @@ import AppStatus from '../components/AppStatus'
 import AppLoader from '../components/AppLoader'
 import AppNotification from '../components/AppNotification'
 import { useStatus } from "../hooks/status";
-import {computed} from "vue";
+import {computed, onMounted} from "vue";
 
 export default {
   props: ['taskId'],
@@ -30,12 +30,12 @@ export default {
   setup(props){
     const store = useStore();
     const statusName = useStatus();
-    const task = computed(() => store.getters.tasksList.find( item => String(item.databaseId) === props.taskId))
+    const task = computed(() => store.getters.tasksList)
     const loading = computed(() => store.getters.isFetching)
 
-    if(!task.value) {
-      store.dispatch('loadDatabase', props.taskId)
-    }
+    onMounted(() => {
+      store.dispatch('loadTask', props.taskId)
+    })
 
     const setStatus = (newStatus) => {
       store.commit('setStatus', {databaseId: props.taskId, newStatus: newStatus})

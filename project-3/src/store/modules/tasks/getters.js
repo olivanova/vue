@@ -1,7 +1,6 @@
 export default {
   getList(state){
     if(state.filter) {
-      console.log('state.filter', state.filter)
       return state.tasksList.filter(item => item.status === state.filter)
     }
     return state.tasksList

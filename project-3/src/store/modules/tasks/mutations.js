@@ -15,11 +15,7 @@ export default {
   },
 
   setStatus(state, payload) {
-    const array = state.tasksList.find( item => {
-      if(String(item.databaseId) === payload.databaseId) {
-        item.status = payload.newStatus
-      }
-    })
+    state.tasksList.status = payload.newStatus
   },
 
   fetchStart(state) {

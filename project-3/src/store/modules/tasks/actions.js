@@ -1,5 +1,5 @@
 export default {
-  async loadDatabase ({commit}, ) {
+  async loadDatabase ({commit}) {
     try {
       commit('fetchStart')
       const responce = await fetch(`${process.env.VUE_APP_DATABASE_URL}/tasks.json`, {
@@ -18,6 +18,29 @@ export default {
       commit('saveData', data)
       commit('fetchEnd')
       commit('activeTask')
+    } catch(e) {
+      commit('fetchEnd')
+      commit('notificationShow')
+      throw new Error('Не удалось загрузить список задач')
+    }
+  },
+
+  async loadTask ({commit}, databaseId) {
+    try {
+      commit('fetchStart')
+      const responce = await fetch(`${process.env.VUE_APP_DATABASE_URL}/tasks/${databaseId}.json`, {
+        method: 'GET'
+      })
+      const database = await responce.json();
+      if(!database){
+        throw new Error('Задач нет')
+      }
+      const data = {
+        databaseId: databaseId,
+        ...database
+      }
+      commit('saveData', data)
+      commit('fetchEnd')
     } catch(e) {
       commit('fetchEnd')
       commit('notificationShow')

@@ -1,7 +1,11 @@
 import { createRouter, createWebHistory} from 'vue-router';
-import Tasks from "../views/Tasks";
 import New from "../views/New";
 import Task from "../views/Task";
+
+const Tasks = () => import(
+  /* webpackChunkName: "tasks" */
+  /* webpackMode: "lazy-once" */
+  '../views/Tasks')
 
 export const router = createRouter({
   history: createWebHistory(),
